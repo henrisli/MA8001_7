@@ -95,6 +95,7 @@ simulation_run <- function(){
     voi_j[j] = r_wj[j]*dnorm(0)
   }
   survey_line = list()
+  
   survey_line[[1]] = which.max(voi_j)
   r_wj = r_wj[survey_line[[1]]]
   F_j = matrix(0, ncol = 625, nrow = 25)
@@ -120,6 +121,7 @@ simulation_run <- function(){
       r_wj[j] = sqrt(r_wj2)
       voi_j[j] = r_wj[j]*dnorm(0)
     }
+    print(which.max(voi_j))
     survey_line[[iter]] = which.max(voi_j)
     r_wj = r_wj[survey_line[[iter]]]
     F_j = matrix(0, ncol = 625, nrow = 25)
@@ -136,7 +138,7 @@ simulation_run <- function(){
   return(unlist(survey_line))
 }
 survey_lines = list()
-for (i in 1:10){
+for (i in 205:210){
   print(i)
   survey_lines[[i]] = simulation_run()
 }
@@ -150,11 +152,11 @@ ggplot(data = df, aes(x=x)) + geom_histogram() + xlab("Number of survey lines") 
 
 max_iterations = max(num_iter)
 
-line_number = rep(NA, sum(num_iter))
-run_number = rep(NA, sum(num_iter))
-plot_matrix = matrix(0, nrow = 100, ncol = 25)
+line_number = rep(NA, sum(num_iter[1:200]))
+run_number = rep(NA, sum(num_iter[1:200]))
+plot_matrix = matrix(0, nrow = 200, ncol = 25)
 iter = 1
-for(i in 1:204){
+for(i in 1:200){
   for (j in 1:num_iter[i]){
     line_number[iter] = survey_lines[[i]][j]
     run_number[iter] = i
