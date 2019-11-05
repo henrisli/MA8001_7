@@ -31,8 +31,8 @@ plot(mean_var, xlab = "j", ylab = "Mean Variance")
 
 
 covariance_mat = correlation_mat
-selected_lines = rep(NA, 10)
-for (iter in 1:10){
+selected_lines = rep(NA, 100)
+for (iter in 1:100){
   mean_var = rep(NA, 25)
   Sigma_j = list()
   for (j in 1:25){
@@ -145,7 +145,7 @@ for (i in 205:210){
 #write.table(survey_lines, "C://Users//henri//Documents//GitHub//MA8001_7//survey_lines.csv")
 num_iter = sapply(survey_lines, length)
 df = data.frame(x = num_iter)
-ggplot(data = df, aes(x=x)) + geom_histogram() + xlab("Number of survey lines") + ylab("Counts")
+ggplot(data = df, aes(x=x)) + geom_histogram(binwidth = 1) + xlab("Number of survey lines") + ylab("Counts")
 #hist(num_iter)
 
 
